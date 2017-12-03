@@ -1,4 +1,4 @@
-package chat2;
+package com.messenger.net;
 
 import java.awt.EventQueue;
 import javax.swing.JButton;

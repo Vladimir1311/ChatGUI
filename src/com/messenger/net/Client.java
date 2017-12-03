@@ -1,4 +1,4 @@
-package chat2;
+package com.messenger.net;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -53,41 +53,41 @@ public class Client extends JFrame
             e.printStackTrace();
         } 
 		
-            setTitle("Клиентская часть");
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setSize(880, 550);
-            setLocationRelativeTo(null);
-            contentPane = new JPanel();
-            contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-            setContentPane(contentPane);
+        setTitle("Клиентская часть");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(880, 550);
+        setLocationRelativeTo(null);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
  		
-            GridBagLayout gbl_contentPane = new GridBagLayout();
-            gbl_contentPane.columnWidths = new int[]{16, 857, 7};
-            gbl_contentPane.columnWidths = new int[]{16, 827, 30, 7};
-            gbl_contentPane.rowHeights = new int[]{35, 475, 40};
-            gbl_contentPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-            gbl_contentPane.columnWeights = new double[]{1.0, 1.0};
-            gbl_contentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-            contentPane.setLayout(gbl_contentPane);
+        GridBagLayout gbl_contentPane = new GridBagLayout();
+        gbl_contentPane.columnWidths = new int[]{16, 857, 7};
+        gbl_contentPane.columnWidths = new int[]{16, 827, 30, 7};
+        gbl_contentPane.rowHeights = new int[]{35, 475, 40};
+        gbl_contentPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+        gbl_contentPane.columnWeights = new double[]{1.0, 1.0};
+        gbl_contentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+        contentPane.setLayout(gbl_contentPane);
  		
-            history = new JTextArea();
-            history.setEditable(false);
-            history.setFont(new Font("Arial", Font.PLAIN, 12));
-            JScrollPane scroll = new JScrollPane(history);
-            GridBagConstraints scrollConstraints = new GridBagConstraints();
-            scrollConstraints.insets = new Insets(0, 0, 5, 5);
-            scrollConstraints.fill = GridBagConstraints.BOTH;
-            scrollConstraints.gridx = 0;
-            scrollConstraints.gridy = 0;
-            scrollConstraints.gridwidth = 3;
-            scrollConstraints.gridheight = 2;
-            scrollConstraints.insets = new Insets(0, 7, 0, 0);
-            contentPane.add(scroll, scrollConstraints);
+        history = new JTextArea();
+        history.setEditable(false);
+        history.setFont(new Font("Arial", Font.PLAIN, 12));
+        JScrollPane scroll = new JScrollPane(history);
+        GridBagConstraints scrollConstraints = new GridBagConstraints();
+        scrollConstraints.insets = new Insets(0, 0, 5, 5);
+        scrollConstraints.fill = GridBagConstraints.BOTH;
+        scrollConstraints.gridx = 0;
+        scrollConstraints.gridy = 0;
+        scrollConstraints.gridwidth = 3;
+        scrollConstraints.gridheight = 2;
+        scrollConstraints.insets = new Insets(0, 7, 0, 0);
+        contentPane.add(scroll, scrollConstraints);
 		
-            txtMessage = new JTextField();
-            txtMessage.addKeyListener(new KeyAdapter() 
-            {
-                @Override
+        txtMessage = new JTextField();
+        txtMessage.addKeyListener(new KeyAdapter() 
+        {
+            @Override
                 public void keyPressed(KeyEvent e) 
                 {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER)
@@ -105,7 +105,7 @@ public class Client extends JFrame
             contentPane.add(txtMessage, gbc_txtMessage);
             txtMessage.setColumns(10);
 
-            JButton btnSend = new JButton("Send");
+            JButton btnSend = new JButton("Отправить");
             btnSend.addActionListener(new ActionListener()
             {
 		public void actionPerformed(ActionEvent e)
@@ -125,16 +125,16 @@ public class Client extends JFrame
  	
  	public void send(String message) 
         {
-            if (message.equals("")) return;
- 		message = name + ": " + message;
-		console(message);
-		//net.send(message.getBytes());
-		txtMessage.setText("");
+            if (message.equals("")) 
+                return;
+            message = name + ": " + message;
+            console(message);
+            txtMessage.setText("");
  	}
  	
  	public void console(String message) 
         {
- 		history.setCaretPosition(history.getDocument().getLength());
- 		history.append(message + "\n\r");
+            history.setCaretPosition(history.getDocument().getLength());
+            history.append(message + "\n\r");
         }
 }
