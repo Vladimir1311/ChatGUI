@@ -1,4 +1,4 @@
-package com.messenger.net;
+package com.messenger;
 
 import java.awt.EventQueue;
 import javax.swing.JButton;

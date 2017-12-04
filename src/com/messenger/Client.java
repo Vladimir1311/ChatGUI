@@ -1,5 +1,6 @@
-package com.messenger.net;
+package com.messenger;
 
+import com.messenger.net.Net;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,7 +18,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import sun.nio.ch.Net;
 
 public class Client extends JFrame
 {
@@ -29,12 +29,22 @@ public class Client extends JFrame
     private int port;
     private JTextField txtMessage;
     private JTextArea history;
+    private boolean connected = false;
  
     public Client(String name, String address, int port)
     {
         this.name = name;
 	this.address = address;
 	this.port = port;
+        
+        Net net = new Net();
+        connected = net.openConnection(address);
+        
+        if(!connected)
+        {
+            System.err.println("Ошибка подключения...");
+            console("Ошибка подключения...");
+        }
 
 	createWindow();
         
