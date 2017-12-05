@@ -30,7 +30,7 @@ public class Server
                 manage();
                 receive();
             }
-        }, "Запуск сервера");
+        }, "serverRun");
     }
         
     private void manage()
@@ -44,7 +44,7 @@ public class Server
                     
                 }
             }
-        }); 
+        }, "manage"); 
         manage.start();
     }
         
@@ -59,7 +59,7 @@ public class Server
                     
                 }
             }
-        }); 
+        }, "receive"); 
         receive.start();
     }
 }

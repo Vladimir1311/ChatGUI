@@ -37,7 +37,7 @@ public class Client extends JFrame
 	this.address = address;
 	this.port = port;
         
-        Net net = new Net();
+        Net net = new Net(port);
         connected = net.openConnection(address);
         
         if(!connected)
