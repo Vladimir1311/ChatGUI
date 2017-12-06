@@ -30,6 +30,7 @@ public class Client extends JFrame
     private JTextField txtMessage;
     private JTextArea history;
     private boolean connected = false;
+    private Net net = null;
  
     public Client(String name, String address, int port)
     {
@@ -37,7 +38,7 @@ public class Client extends JFrame
 	this.address = address;
 	this.port = port;
         
-        Net net = new Net(port);
+        net = new Net(port);
         connected = net.openConnection(address);
         
         if(!connected)
@@ -48,6 +49,8 @@ public class Client extends JFrame
 
 	createWindow();
         
+        String connectionPacket = "/c/" + name;
+        net.send(connectionPacket.getBytes());
 	console("Вы пытаетесь подключиться к: " + address + 
                 ", порт: " + port + ", имя пользователя: " + name );
     }
@@ -139,6 +142,7 @@ public class Client extends JFrame
                 return;
             message = name + ": " + message;
             console(message);
+            net.send(message.getBytes());
             txtMessage.setText("");
  	}
  	
